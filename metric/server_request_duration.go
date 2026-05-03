@@ -20,6 +20,10 @@ func NewServerRequestDuration(cfg BaseConfig) func(next http.Handler) http.Handl
 		metricNameServerRequestDuration,
 		otelmetric.WithDescription(metricDescServerRequestDuration),
 		otelmetric.WithUnit(metricUnitServerRequestDuration),
+
+		// Use the same explicit bucket boundaries as otelhttp so request duration
+		// histograms are useful for common HTTP latency ranges and stay consistent
+		// with other OpenTelemetry HTTP server instrumentation.
 		otelmetric.WithExplicitBucketBoundaries(
 			0.005, 0.01, 0.025, 0.05, 0.075, 0.1,
 			0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10,
