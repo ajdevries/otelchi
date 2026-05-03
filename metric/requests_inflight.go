@@ -14,6 +14,8 @@ const (
 )
 
 // [RequestInFlight] is a metrics recorder for recording the number of requests in flight.
+//
+// Deprecated: use NewServerActiveRequests instead.
 func NewRequestInFlight(cfg BaseConfig) func(next http.Handler) http.Handler {
 	// init metric, here we are using counter for capturing request in flight
 	counter, err := cfg.Meter.Int64UpDownCounter(

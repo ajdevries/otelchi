@@ -17,8 +17,9 @@ import (
 
 // NewMetricConfig creates metric configuration that includes:
 // - Request Duration Metrics: measures the latency of HTTP requests
-// - Request Inflight Metrics: tracks the number of concurrent requests
-// - Response Size Metrics: measures the size of HTTP responses
+// - Active Request Metrics: tracks the number of concurrent requests
+// - Request Body Size Metrics: measures the size of HTTP request bodies
+// - Response Body Size Metrics: measures the size of HTTP response bodies
 func NewMetricConfig(serviceName string) (otelchimetric.BaseConfig, error) {
 	// create context
 	ctx := context.Background()

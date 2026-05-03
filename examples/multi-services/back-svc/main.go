@@ -37,9 +37,10 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(
 		otelchi.Middleware(serviceName, otelchi.WithChiRoutes(r)),
-		otelchimetric.NewRequestDurationMillis(metricConfig),
-		otelchimetric.NewRequestInFlight(metricConfig),
-		otelchimetric.NewResponseSizeBytes(metricConfig),
+		otelchimetric.NewServerRequestDuration(metricConfig),
+		otelchimetric.NewServerActiveRequests(metricConfig),
+		otelchimetric.NewServerRequestBodySize(metricConfig),
+		otelchimetric.NewServerResponseBodySize(metricConfig),
 	)
 	r.Get("/", utils.HealthCheckHandler)
 	r.Get("/name", func(w http.ResponseWriter, r *http.Request) {
