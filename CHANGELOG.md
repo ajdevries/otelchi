@@ -8,6 +8,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Added
+
+- Add OpenTelemetry semantic-convention compliant HTTP server metric middleware for `http.server.request.duration`, `http.server.active_requests`, `http.server.request.body.size`, and `http.server.response.body.size`.
+
+### Deprecated
+
+- Deprecate legacy metric middleware for `request_duration_millis`, `requests_inflight`, and `response_size_bytes`. These remain available for backward compatibility.
+
 ## [0.12.2] - 2025-09-02
 
 ### Fixed

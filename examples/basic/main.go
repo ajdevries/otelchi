@@ -53,9 +53,10 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(
 		otelchi.Middleware(serverName, otelchi.WithChiRoutes(r)),
-		otelchimetric.NewRequestDurationMillis(baseCfg),
-		otelchimetric.NewRequestInFlight(baseCfg),
-		otelchimetric.NewResponseSizeBytes(baseCfg),
+		otelchimetric.NewServerRequestDuration(baseCfg),
+		otelchimetric.NewServerActiveRequests(baseCfg),
+		otelchimetric.NewServerRequestBodySize(baseCfg),
+		otelchimetric.NewServerResponseBodySize(baseCfg),
 	)
 	r.HandleFunc("/users/{id:[0-9]+}", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		id := chi.URLParam(r, "id")
